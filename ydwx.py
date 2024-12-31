@@ -69,17 +69,14 @@ for i in range(len(ydwx_deviceParams)):
     }
     data = f'mallNo=20014&appId=68a91a5bac6a4f3e91bf4b42856785c6&platform=h5&imei=2333&appVersion=3.53.0&osVersion=12.0.1&action=mixc.app.memberSign.sign&apiVersion=1.0&timestamp={timestamp}&deviceParams={ydwx_deviceParams[i]}&token={ydwx_token[i]}&params=eyJtYWxsTm8iOiIyMDAxNCJ9&sign={sign}'
     try:
-        html = requests.post(url=url, headers=headers, data=data, timeout=5) # 添加超时
-        html.raise_for_status() # 检查HTTP状态码
+        html = requests.post(url=url, headers=headers, data=data, timeout=5)
+        html.raise_for_status()
         result = f'帐号{i + 1}签到结果:' + json.loads(html.text)['message']
     except requests.exceptions.RequestException as e:
         result = f'帐号{i + 1}签到出错: {e}'
-        print(f"请求异常: {e}")
     except json.JSONDecodeError as e:
         result = f'帐号{i + 1} JSON解析出错: {e}, 原始返回: {html.text}'
-        print(f"JSON解析出错: {e}, 原始返回: {html.text}")
-    print(result)
-    log.append(result)
+    log.append(result)  # 将结果添加到日志列表
 
 log2 = '\n'.join(log)
 
