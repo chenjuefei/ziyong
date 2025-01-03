@@ -5,7 +5,7 @@
 # @Time : 2023/2/27 13:23
 # Modified to use QL notify system
 # -------------------------------
-# cron "6,10,15 * * *" script-path=xxx.py,tag=匹配cron用
+# cron "10 10 * * *" script-path=xxx.py,tag=匹配cron用
 # const $ = new Env('一点万象签到')
 
 import requests
